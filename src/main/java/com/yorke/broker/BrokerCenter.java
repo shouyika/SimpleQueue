@@ -14,24 +14,26 @@ import java.util.Set;
  */
 public class BrokerCenter {
 
-    public static void main() {
+    public static void main(String[] args) {
         boolean isRunning = true;
         try {
             ServerSocketChannel ssc = ServerSocketChannel.open();
             Selector acceptSelector = Selector.open();
-            ssc.register(acceptSelector, SelectionKey.OP_ACCEPT);
             ssc.configureBlocking(false);
-            ssc.bind(new InetSocketAddress(6666));
-            while(isRunning) {
+            ssc.register(acceptSelector, SelectionKey.OP_ACCEPT);
+            Consumer consumer = new Consumer();
+            consumer.start();
+            ssc.bind(new InetSocketAddress(7777));
+            while (isRunning) {
                 acceptSelector.select();
                 Set<SelectionKey> selectionKeys = acceptSelector.selectedKeys();
-                Iterator<SelectionKey> iterator =  selectionKeys.iterator();
-                while(iterator.hasNext()) {
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
+                while (iterator.hasNext()) {
                     SelectionKey selectionKey = iterator.next();
                     iterator.remove();
                     SocketChannel sc = ssc.accept();
-                    if(sc != null) {
-                        //sc.register();
+                    if (sc != null) {
+                        consumer.add(sc);
                     }
                 }
             }

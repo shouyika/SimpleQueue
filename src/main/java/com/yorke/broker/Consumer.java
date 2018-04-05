@@ -12,9 +12,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Created by BG242387 on 2018/3/28.
- */
 public class Consumer {
     private Selector selector;
 

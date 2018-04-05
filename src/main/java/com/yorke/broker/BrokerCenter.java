@@ -9,9 +9,6 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * Created by BG242387 on 2018/3/28.
- */
 public class BrokerCenter {
 
     public static void main(String[] args) {

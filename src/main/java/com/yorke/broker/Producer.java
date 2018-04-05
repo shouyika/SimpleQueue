@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-/**
- * Created by BG242387 on 2018/4/4.
- */
 public class Producer {
     private static Socket socket;
 
